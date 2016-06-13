@@ -36,13 +36,13 @@ public class MainNetParams extends AbstractBitcoinNetParams {
         super();
         interval = INTERVAL;
         targetTimespan = TARGET_TIMESPAN;
-        maxTarget = Utils.decodeCompactBits(0x1d00ffffL);
+        maxTarget = Utils.decodeCompactBits(0x1e0fffffL);
         dumpedPrivateKeyHeader = 128;
-        addressHeader = 0;
+        addressHeader = 32;
         p2shHeader = 5;
         acceptableAddressCodes = new int[] { addressHeader, p2shHeader };
-        port = 8333;
-        packetMagic = 0xf9beb4d9L;
+        port = 8121;
+        packetMagic = 0xfdc2b4ddL;
         bip32HeaderPub = 0x0488B21E; //The 4 byte header that serializes in base58 to "xpub".
         bip32HeaderPriv = 0x0488ADE4; //The 4 byte header that serializes in base58 to "xprv"
 
@@ -50,25 +50,56 @@ public class MainNetParams extends AbstractBitcoinNetParams {
         majorityRejectBlockOutdated = MAINNET_MAJORITY_REJECT_BLOCK_OUTDATED;
         majorityWindow = MAINNET_MAJORITY_WINDOW;
 
-        genesisBlock.setDifficultyTarget(0x1d00ffffL);
-        genesisBlock.setTime(1231006505L);
-        genesisBlock.setNonce(2083236893);
+        genesisBlock.setDifficultyTarget(0x1e0ffff0L);
+        genesisBlock.setTime(1368560876L);
+        genesisBlock.setNonce(3591624);
         id = ID_MAINNET;
-        subsidyDecreaseBlockCount = 210000;
+        subsidyDecreaseBlockCount = 840000;
         spendableCoinbaseDepth = 100;
+        genesisBlock.setMerkleRoot(Sha256Hash.wrap("a215e67ba165202f75b6458d22fedd1a3ec4f03449a4c6b2a4b8130bfebd3b15"));
+
         String genesisHash = genesisBlock.getHashAsString();
-        checkState(genesisHash.equals("000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f"),
+        checkState(genesisHash.equals("dced3542896ed537cb06f9cb064319adb0da615f64dd8c5e5bad974398f44b24"),
                 genesisHash);
 
         // This contains (at a minimum) the blocks which are not BIP30 compliant. BIP30 changed how duplicate
         // transactions are handled. Duplicated transactions could occur in the case where a coinbase had the same
         // extraNonce and the same outputs but appeared at different heights, and greatly complicated re-org handling.
         // Having these here simplifies block connection logic considerably.
-        checkpoints.put(91722, Sha256Hash.wrap("00000000000271a2dc26e7667f8419f2e15416dc6955e5a6c6cdf3f2574dd08e"));
-        checkpoints.put(91812, Sha256Hash.wrap("00000000000af0aed4792b1acee3d966af36cf5def14935db8de83d6f9306f2f"));
-        checkpoints.put(91842, Sha256Hash.wrap("00000000000a4d0a398161ffc163c503763b1f4360639393e0e4c8e300e0caec"));
-        checkpoints.put(91880, Sha256Hash.wrap("00000000000743f190a18c5577a3c2d2a1f610ae9601ac046a38084ccb7cd721"));
-        checkpoints.put(200000, Sha256Hash.wrap("000000000000034a7dedef4a161fa058a2d67a173a90155f3a2fe6fc132e0ebf"));
+
+        checkpoints.put(0, Sha256Hash.wrap("dced3542896ed537cb06f9cb064319adb0da615f64dd8c5e5bad974398f44b24"));
+        checkpoints.put( 1, Sha256Hash.wrap("e39be079a4e57af79f63edb2726bdcb401ae520fa5b5328bbeab185b5b3d636e"));
+        checkpoints.put( 50,Sha256Hash.wrap("34b021706ae2b72e41d411a31ead78219087213a29fe338515926f055a4c5655")) ;
+        checkpoints.put( 150,Sha256Hash.wrap("c3565831a172cf737b0dd8bd47a81f2dfe99012c97362f397838e617d26ba99b"));
+        checkpoints.put( 300,Sha256Hash.wrap("52d9e6919828769b358db66f8793a06e5915948d0a0ee36f59465e91dabb97a6"));
+        checkpoints.put( 500,Sha256Hash.wrap("6ba9043e14339790c56181da3ef4d87ff58b8cd3c07b2d33e7d808e189136002"));
+        checkpoints.put( 1000,Sha256Hash.wrap("29607502895cf180b7b556f0bc70b2001eacb819be6b4be1e5f0092622e03cb3"));
+        checkpoints.put( 6048, Sha256Hash.wrap("e8eb14ac03f25fd52a46b51acba8af543f6b4baf1b85b62d6e6e09ba5f108ed7"));
+        checkpoints.put( 12096, Sha256Hash.wrap("d2bd87d677cced55584634d6d03434e041d5dbbaf5639c873a5f6a654d788ad1"));
+        checkpoints.put( 16128, Sha256Hash.wrap("290d05c1f5fb2cc75d5bc7657141e4e42d4ee7b4e78a73c96fac878a58d52057"));
+        checkpoints.put( 18143, Sha256Hash.wrap("996caca04cce6ffc7f1053abcd350742e2ecc3220663cfd3e3585e3442d7cf74"));
+        checkpoints.put( 18144, Sha256Hash.wrap("ed5124e191b92d5405374dc4018203a7e03f4251293b6d5f57a83d1e1ff4df30"));
+        checkpoints.put( 20160, Sha256Hash.wrap("e19b119f4a633d89320d502e7c05b88d083acdff3b4bd40efcdca54b25f6cb2c"));
+        checkpoints.put( 20500, Sha256Hash.wrap("23ab64ad71d7191c28010c7c1b0b35d32ac97ace893dbb20068a6abb617f80a4"));
+        checkpoints.put( 24000, Sha256Hash.wrap("c3cf2892cbaaf8b88565f027460bda831a428bf6ea76fafa870bf3586dd07c5f"));
+        checkpoints.put( 26000, Sha256Hash.wrap("906a76b3b36aa7f489ea0ee38c180d0eebaf489e4998e6aefa806fadc687e475"));
+        checkpoints.put( 27000, Sha256Hash.wrap("f7391f58e29d057f152b9c124af6153dadb62385d8728118e9cef728d9a4d16d"));
+        checkpoints.put( 27000, Sha256Hash.wrap("f7391f58e29d057f152b9c124af6153dadb62385d8728118e9cef728d9a4d16d"));
+        checkpoints.put( 28000, Sha256Hash.wrap("28adf712f2a7d9d7ab3836249c9e2beff8d0deb362a1991c61cb61c0fe9af10b"));
+        checkpoints.put( 29000, Sha256Hash.wrap("0aca7e1d7cebe224479db62d9887bba7e8dbf5cc295261b6b2e9b9bc76f58ab1"));
+        checkpoints.put( 29000, Sha256Hash.wrap("0aca7e1d7cebe224479db62d9887bba7e8dbf5cc295261b6b2e9b9bc76f58ab1"));
+        checkpoints.put( 30000, Sha256Hash.wrap("1ff80eac17ba7efc350d65d842cbedd5822b4bef3eae7b1c24424c0d5cc2af51"));
+        checkpoints.put( 31000, Sha256Hash.wrap("e9a24595526e9c67357e3a5962e8d489a867573eef1ea104de6be113d26512de"));
+        checkpoints.put( 35000, Sha256Hash.wrap("0d8f14bc84ed93490b8c2070de4b744085a4d661f7ef96c856fd32572bbd87fc"));
+        checkpoints.put( 45000, Sha256Hash.wrap("612461aaa0ca6a3bc07238ac86e67fa37ae1b8b083d0c1e23f396bbe5bd05896"));
+        checkpoints.put( 50000, Sha256Hash.wrap("e251895683ec1363344504b91d9899c29064afc786905c9a052d61ee88a95206"));
+        checkpoints.put( 60000, Sha256Hash.wrap("f03feaab75843a39be8cf0fbf8bdae3056aebd4817b89a99e4837db2bdd2659a"));
+        checkpoints.put( 65000, Sha256Hash.wrap("b635ce68527e8b777f68a71fe441faab285fa7aafd78259ddc24843539bba369"));
+        checkpoints.put( 66000, Sha256Hash.wrap("f619fc8b01c1aedcf4623cea7d85310db85174e27e1b3069dadf76e9bc2f6c99"));
+        checkpoints.put(103000, Sha256Hash.wrap("e41285ba8cd299b28f0dbfc60b28a9c3e5b6482079d4608ef0dad14390ce6da7"));
+        checkpoints.put(115300, Sha256Hash.wrap("77b3f1913755a4d381f36cd134f280a6519dd54d1c33c499eeded256f36bb394"));
+
+
 
         dnsSeeds = new String[] {
                 "seed.bitcoin.sipa.be",        // Pieter Wuille
@@ -77,15 +108,15 @@ public class MainNetParams extends AbstractBitcoinNetParams {
                 "seed.bitcoinstats.com",       // Chris Decker
                 "seed.bitnodes.io",            // Addy Yeow
         };
-        httpSeeds = new HttpDiscovery.Details[] {
+        httpSeeds = null; /*new HttpDiscovery.Details[] {
                 // Andreas Schildbach
                 new HttpDiscovery.Details(
                         ECKey.fromPublicOnly(Utils.HEX.decode("0238746c59d46d5408bf8b1d0af5740fe1a6e1703fcb56b2953f0b965c740d256f")),
                         URI.create("http://httpseed.bitcoin.schildbach.de/peers")
                 )
-        };
+        };*/
 
-        addrSeeds = new int[] {
+        addrSeeds = null;/*new int[] {
                 0x1ddb1032, 0x6242ce40, 0x52d6a445, 0x2dd7a445, 0x8a53cd47, 0x73263750, 0xda23c257, 0xecd4ed57,
                 0x0a40ec59, 0x75dce160, 0x7df76791, 0x89370bad, 0xa4f214ad, 0x767700ae, 0x638b0418, 0x868a1018,
                 0xcd9f332e, 0x0129653e, 0xcc92dc3e, 0x96671640, 0x56487e40, 0x5b66f440, 0xb1d01f41, 0xf1dc6041,
@@ -126,7 +157,7 @@ public class MainNetParams extends AbstractBitcoinNetParams {
                 0x6d27c257, 0x977fffad, 0x7baa5d5d, 0x1213be43, 0xb167e5a9, 0x640fe8ca, 0xbc9ea655, 0x0f820a4c,
                 0x0f097059, 0x69ac957c, 0x366d8453, 0xb1ba2844, 0x8857f081, 0x70b5be63, 0xc545454b, 0xaf36ded1,
                 0xb5a4b052, 0x21f062d1, 0x72ab89b2, 0x74a45318, 0x8312e6bc, 0xb916965f, 0x8aa7c858, 0xfe7effad,
-        };
+        };*/
     }
 
     private static MainNetParams instance;
