@@ -49,7 +49,7 @@ public abstract class NetworkParameters {
     /**
      * The alert signing key originally owned by Satoshi, and now passed on to Gavin along with a few others.
      */
-    public static final byte[] SATOSHI_KEY = Utils.HEX.decode("04fc9702847840aaf195de8442ebecedf5b095cdbb9bc716bda9110971b28a49e0ead8564ff0db22209e0374782c093bb899692d524e9d6a6956e7c5ecbcd68284");
+    public static final byte[] SATOSHI_KEY = Utils.HEX.decode("04bd513df05d93e939fbd367fe2874c967980530334f43d1aa998e67ae71c13ce4aab48202d64ed8ee78b217094f17a5ce633e1f444950830aacc730677ef992db");
 
     /** The string returned by getId() for the main, production network where people trade things. */
     public static final String ID_MAINNET = "org.bitcoin.production";
@@ -525,10 +525,10 @@ public abstract class NetworkParameters {
     public abstract int getProtocolVersionNum(final ProtocolVersion version);
 
     public static enum ProtocolVersion {
-        MINIMUM(70000),
+        MINIMUM(60018), //GoldCoin
         PONG(60001),
         BLOOM_FILTER(70000),
-        CURRENT(70001);
+        CURRENT(60018);//GoldCoin
 
         private final int bitcoinProtocol;
 

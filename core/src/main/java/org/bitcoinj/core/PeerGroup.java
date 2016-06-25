@@ -285,7 +285,7 @@ public class PeerGroup implements TransactionBroadcaster {
     private volatile int vConnectTimeoutMillis = DEFAULT_CONNECT_TIMEOUT_MILLIS;
     
     /** Whether bloom filter support is enabled when using a non FullPrunedBlockchain*/
-    private volatile boolean vBloomFilteringEnabled = true;
+    private volatile boolean vBloomFilteringEnabled = false; //GoldCoin doesn't support this.
 
     /** See {@link #PeerGroup(Context)} */
     public PeerGroup(NetworkParameters params) {
@@ -437,7 +437,7 @@ public class PeerGroup implements TransactionBroadcaster {
         peerDiscoverers = new CopyOnWriteArraySet<PeerDiscovery>();
         runningBroadcasts = Collections.synchronizedSet(new HashSet<TransactionBroadcast>());
         bloomFilterMerger = new FilterMerger(DEFAULT_BLOOM_FILTER_FP_RATE);
-        vMinRequiredProtocolVersion = params.getProtocolVersionNum(NetworkParameters.ProtocolVersion.BLOOM_FILTER);
+        vMinRequiredProtocolVersion = isBloomFilteringEnabled() ? params.getProtocolVersionNum(NetworkParameters.ProtocolVersion.BLOOM_FILTER) : params.getProtocolVersionNum(NetworkParameters.ProtocolVersion.MINIMUM);
     }
 
     private CountDownLatch executorStartupLatch = new CountDownLatch(1);
