@@ -37,7 +37,7 @@ public class MainNetParams extends AbstractBitcoinNetParams {
         interval = INTERVAL;
         targetTimespan = TARGET_TIMESPAN;
         maxTarget = Utils.decodeCompactBits(0x1e0fffffL);
-        dumpedPrivateKeyHeader = 128;
+        dumpedPrivateKeyHeader = 128 + 32;
         addressHeader = 32;
         p2shHeader = 5;
         acceptableAddressCodes = new int[] { addressHeader, p2shHeader };
@@ -102,11 +102,9 @@ public class MainNetParams extends AbstractBitcoinNetParams {
 
 
         dnsSeeds = new String[] {
-                "seed.bitcoin.sipa.be",        // Pieter Wuille
-                "dnsseed.bluematt.me",         // Matt Corallo
-                "dnsseed.bitcoin.dashjr.org",  // Luke Dashjr
-                "seed.bitcoinstats.com",       // Chris Decker
-                "seed.bitnodes.io",            // Addy Yeow
+                "107.161.23.121",
+                "24.54.97.47",
+                "167.160.36.162",
         };
         httpSeeds = null; /*new HttpDiscovery.Details[] {
                 // Andreas Schildbach
