@@ -318,6 +318,7 @@ public abstract class AbstractBitcoinNetParams extends NetworkParameters {
             //First we find the last 60 blocks and take the time between blocks
             //That gives us a list of 59 time differences
             //Then we take the median of those times and multiply it by 60 to get our actualtimespan
+
             while(last60BlockTimes.size() < 60) {
                 last60BlockTimes.add(tblock2.getHeader().getTimeSeconds());
                 //if(tblock2->pprev)//should always be so
@@ -529,6 +530,7 @@ public abstract class AbstractBitcoinNetParams extends NetworkParameters {
                 long nbits240ago = 0;
                 int counter = 0;
                 //Note: 0 is the current block, we want 60 past current
+
                 while(counter <= 240) {
                     if(counter == 60) {
                         nbits60ago = tblock22.getHeader().getDifficultyTarget();
@@ -537,6 +539,8 @@ public abstract class AbstractBitcoinNetParams extends NetworkParameters {
                     }
                     tblock22 = tblock22.getPrev(blockStore);
 
+                    if(tblock22 == null)
+                        return; //break out since not 240 block in the chain
                     counter++;
                 }
 
@@ -569,6 +573,7 @@ public abstract class AbstractBitcoinNetParams extends NetworkParameters {
 
                 if(!didHalfAdjust && bnNew.compareTo(bnLast) > 0) {
                     bnNew = bnLast;
+                    log.info("New target > Last (10/8)[{}]", pindexLast.getHeight());
                 }
 
                 //bnLast *= 8;
@@ -586,6 +591,7 @@ public abstract class AbstractBitcoinNetParams extends NetworkParameters {
 
                 if(bnNew.compareTo(bn60ago) < 0) {
                     bnNew = bn60ago;
+                    //log.info("New target < 60-blocks-ago*1.02[{}]", pindexLast.getHeight());
                 }
 
 //                bn60ago *= 102;
@@ -602,6 +608,7 @@ public abstract class AbstractBitcoinNetParams extends NetworkParameters {
 
                 if(bnNew.compareTo(bn240ago) < 0) {
                     bnNew = bn240ago;
+                   // log.info("New target < 240-blocks-ago*1.02 [{}]", pindexLast.getHeight());
                 }
 
                 //bn240ago *= 408;

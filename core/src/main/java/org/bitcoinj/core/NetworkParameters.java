@@ -52,13 +52,13 @@ public abstract class NetworkParameters {
     public static final byte[] SATOSHI_KEY = Utils.HEX.decode("04bd513df05d93e939fbd367fe2874c967980530334f43d1aa998e67ae71c13ce4aab48202d64ed8ee78b217094f17a5ce633e1f444950830aacc730677ef992db");
 
     /** The string returned by getId() for the main, production network where people trade things. */
-    public static final String ID_MAINNET = "org.bitcoin.production";
+    public static final String ID_MAINNET = "org.goldcoin.production";
     /** The string returned by getId() for the testnet. */
-    public static final String ID_TESTNET = "org.bitcoin.test";
+    public static final String ID_TESTNET = "org.goldcoin.test";
     /** The string returned by getId() for regtest mode. */
-    public static final String ID_REGTEST = "org.bitcoin.regtest";
+    public static final String ID_REGTEST = "org.goldcoin.regtest";
     /** Unit test network. */
-    public static final String ID_UNITTESTNET = "org.bitcoinj.unittest";
+    public static final String ID_UNITTESTNET = "org.goldcoinj.unittest";
 
     /** The string used by the payment protocol to represent the main net. */
     public static final String PAYMENT_PROTOCOL_ID_MAINNET = "main";

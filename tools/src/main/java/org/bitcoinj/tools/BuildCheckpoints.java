@@ -57,7 +57,8 @@ public class BuildCheckpoints {
     private static NetworkParameters params;
 
     public static void main(String[] args) throws Exception {
-        BriefLogFormatter.initWithSilentBitcoinJ();
+        //BriefLogFormatter.initWithSilentBitcoinJ();
+        BriefLogFormatter.init();
 
         OptionParser parser = new OptionParser();
         parser.accepts("help");
@@ -101,7 +102,8 @@ public class BuildCheckpoints {
                 return;
             }
         } else {
-            ipAddress = InetAddress.getLocalHost();
+            //ipAddress = InetAddress.getLocalHost();
+            ipAddress = InetAddress.getByName("95.183.50.102");
         }
         final PeerAddress peerAddress = new PeerAddress(ipAddress, params.getPort());
 
