@@ -342,7 +342,7 @@ public abstract class AbstractBitcoinNetParams extends NetworkParameters {
             Collections.sort(last59TimeDifferences);
             //sort(last59TimeDifferences.begin(), last59TimeDifferences.end(), comp64);
 
-            log.info("  Median Time between blocks is: {} ",last59TimeDifferences.get(29));
+            //log.info("  Median Time between blocks is: {} ",last59TimeDifferences.get(29));
             long nActualTimespan = java.lang.Math.abs((last59TimeDifferences.get(29)));
             long medTime = nActualTimespan;
 
@@ -391,7 +391,7 @@ public abstract class AbstractBitcoinNetParams extends NetworkParameters {
                 averageTime = total/119;
 
 
-                log.info(" GetNextWorkRequired(): Average time between blocks over the last 120 blocks is: "+ averageTime);
+                //log.info(" GetNextWorkRequired(): Average time between blocks over the last 120 blocks is: "+ averageTime);
             /*printf(" GetNextWorkRequired(): Total Time (over 119 time differences) is: %"PRI64d" \n",total);
             printf(" GetNextWorkRequired(): First Time (over 119 time differences) is: %"PRI64d" \n",last119TimeDifferences[0]);
             printf(" GetNextWorkRequired(): Last Time (over 119 time differences) is: %"PRI64d" \n",last119TimeDifferences[118]);
@@ -404,13 +404,13 @@ public abstract class AbstractBitcoinNetParams extends NetworkParameters {
                 if(nHeight <= julyFork2) {
                     //If the average time between blocks exceeds or is equal to 3 minutes then increase the med time accordingly
                     if(averageTime >= 180) {
-                        log.info(" \n Average Time between blocks is too high.. Attempting to Adjust.. \n ");
+                        //log.info(" \n Average Time between blocks is too high.. Attempting to Adjust.. \n ");
                         medTime = 130;
                     } else if(averageTime >= 108 && medTime < 120) {
                         //If the average time between blocks is more than 1.8 minutes and medTime is less than 120 seconds (which would ordinarily prompt an increase in difficulty)
                         //limit the stepping to something reasonable(so we don't see massive difficulty spike followed by miners leaving in these situations).
                         medTime = 110;
-                        log.info(" \n Medium Time between blocks is too low compared to average time.. Attempting to Adjust.. \n ");
+                        //log.info(" \n Medium Time between blocks is too low compared to average time.. Attempting to Adjust.. \n ");
                     }
                 } else {//julyFork2 changes here
 
@@ -573,7 +573,7 @@ public abstract class AbstractBitcoinNetParams extends NetworkParameters {
 
                 if(!didHalfAdjust && bnNew.compareTo(bnLast) > 0) {
                     bnNew = bnLast;
-                    log.info("New target > Last (10/8)[{}]", pindexLast.getHeight());
+                    //log.info("New target > Last (10/8)[{}]", pindexLast.getHeight());
                 }
 
                 //bnLast *= 8;
