@@ -98,13 +98,29 @@ public class MainNetParams extends AbstractBitcoinNetParams {
         checkpoints.put( 66000, Sha256Hash.wrap("f619fc8b01c1aedcf4623cea7d85310db85174e27e1b3069dadf76e9bc2f6c99"));
         checkpoints.put(103000, Sha256Hash.wrap("e41285ba8cd299b28f0dbfc60b28a9c3e5b6482079d4608ef0dad14390ce6da7"));
         checkpoints.put(115300, Sha256Hash.wrap("77b3f1913755a4d381f36cd134f280a6519dd54d1c33c499eeded256f36bb394"));
-
+        checkpoints.put(246100, Sha256Hash.wrap("ca7ed43264e0e8965d4115d2f8d3fabb63dcb430fe502d31796c63658ab8274d"));
+        checkpoints.put(300000, Sha256Hash.wrap("e81d2c84c9e7332b35788c1166a0b2c9a34be4d17f08f44a9ba2f5edd82dc300"));
+        checkpoints.put(372000, Sha256Hash.wrap("e3d2857896d0f52ac502eb056ac23f416cb7eddb0a6eba68785b940cca8257ee"));
+        checkpoints.put(564000, Sha256Hash.wrap("9d67ce445d6b513074ef061066bb331871901b953b3bdeaa4dc0a4043cf189f8"));
 
 
         dnsSeeds = new String[] {
+                "dnsseed.gldcoin.com",
+                "seed.gldcoin.com",
+                "vps.gldcoin.com",
+                /*"104.158.54.162",
+                "173.208.211.58",
+                "189.229.156.221",
+                "192.169.7.18",
+                "200.93.92.30",
+                "24.54.97.47",
+                "77.67.46.103",
+                "80.86.85.65",
+                "82.17.177.183",
+                "89.23.188.53",
                 "107.161.23.121",
                 "24.54.97.47",
-                "167.160.36.162",
+                "167.160.36.162",*/
         };
         httpSeeds = null; /*new HttpDiscovery.Details[] {
                 // Andreas Schildbach
