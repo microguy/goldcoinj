@@ -528,7 +528,7 @@ public abstract class NetworkParameters {
         MINIMUM(60018), //GoldCoin
         PONG(60001),
         BLOOM_FILTER(70000),
-        CURRENT(60018);//GoldCoin
+        CURRENT(70000);//GoldCoin
 
         private final int bitcoinProtocol;
 
