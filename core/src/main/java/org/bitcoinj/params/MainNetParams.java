@@ -107,20 +107,7 @@ public class MainNetParams extends AbstractBitcoinNetParams {
         dnsSeeds = new String[] {
                 "dnsseed.gldcoin.com",
                 "seed.gldcoin.com",
-                "vps.gldcoin.com",
-                /*"104.158.54.162",
-                "173.208.211.58",
-                "189.229.156.221",
-                "192.169.7.18",
-                "200.93.92.30",
-                "24.54.97.47",
-                "77.67.46.103",
-                "80.86.85.65",
-                "82.17.177.183",
-                "89.23.188.53",
-                "107.161.23.121",
-                "24.54.97.47",
-                "167.160.36.162",*/
+                "vps.gldcoin.com"
         };
         httpSeeds = null; /*new HttpDiscovery.Details[] {
                 // Andreas Schildbach
