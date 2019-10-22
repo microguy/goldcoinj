@@ -540,4 +540,10 @@ public abstract class NetworkParameters {
             return bitcoinProtocol;
         }
     }
+
+    protected String checkpointPublicKey;
+
+    public String getCheckpointPublicKey() {
+        return checkpointPublicKey;
+    }
 }

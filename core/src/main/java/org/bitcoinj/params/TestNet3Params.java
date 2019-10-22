@@ -68,6 +68,8 @@ public class TestNet3Params extends AbstractBitcoinNetParams {
         majorityEnforceBlockUpgrade = TestNet2Params.TESTNET_MAJORITY_ENFORCE_BLOCK_UPGRADE;
         majorityRejectBlockOutdated = TestNet2Params.TESTNET_MAJORITY_REJECT_BLOCK_OUTDATED;
         majorityWindow = TestNet2Params.TESTNET_MAJORITY_WINDOW;
+
+        checkpointPublicKey = "0383485a411c6b9a259af83d732a759dcab948931c74e55458f9489c411d0a62b0";
     }
 
     private static TestNet3Params instance;

@@ -512,8 +512,16 @@ public class Peer extends PeerSocketHandler {
             processUTXOMessage((UTXOsMessage) m);
         } else if (m instanceof RejectMessage) {
             log.error("{} {}: Received {}", this, getPeerVersionMessage().subVer, m);
+        } else if (m instanceof CheckpointMessage) {
+            processCheckpoint((CheckpointMessage)m);
         } else {
             log.warn("{}: Received unhandled message: {}", this, m);
+        }
+    }
+
+    protected void processCheckpoint(CheckpointMessage checkpoint) {
+        if(checkpoint.checkSignature()) {
+
         }
     }
 
