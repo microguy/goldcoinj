@@ -102,8 +102,8 @@ public class BuildCheckpoints {
                 return;
             }
         } else {
-            //ipAddress = InetAddress.getLocalHost();
-            ipAddress = InetAddress.getByName("95.183.50.102");
+            ipAddress = InetAddress.getLocalHost();
+            //ipAddress = InetAddress.getByName("95.183.50.102");
         }
         final PeerAddress peerAddress = new PeerAddress(ipAddress, params.getPort());
 
