@@ -105,11 +105,11 @@ public class MainNetParams extends AbstractBitcoinNetParams {
 
 
         dnsSeeds = new String[] {
-                "dnsseed.gldcoin.com",
                 "dnsseed.netseed.net",
+                "seed.glcseed.net",
+                "dnsseed.gldcoin.com",
                 "dnsseed.goldcoin.org",
-                "168.235.108.149",
-                "188.165.3.6"
+                "vps.netseed.net"
         };
         httpSeeds = null; /*new HttpDiscovery.Details[] {
                 // Andreas Schildbach
