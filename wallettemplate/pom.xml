@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.goldcoinj</groupId>
         <artifactId>goldcoinj-parent</artifactId>
-        <version>0.14.8</version>
+        <version>0.14.9</version>
     </parent>
 
     <artifactId>wallettemplate</artifactId>
