@@ -8,3 +8,6 @@ target
 *.spvchain
 checkpoints
 checkpoints.txt
+.java-version
+*.wallet
+*.spvchain
