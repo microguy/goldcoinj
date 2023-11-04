@@ -107,8 +107,8 @@ public class MainNetParams extends AbstractBitcoinNetParams {
         dnsSeeds = new String[] {
                 "dnsseed.netseed.net",
                 "seed.glcseed.net",
-                "dnsseed.gldcoin.com",
-                "dnsseed.goldcoin.org",
+                "seed.microguy.net",
+                "cm.goldcoinproject.org",
                 "vps.netseed.net"
         };
         httpSeeds = null; /*new HttpDiscovery.Details[] {
