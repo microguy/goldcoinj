@@ -42,7 +42,7 @@ public class Ping extends Message {
     
     /**
      * Create a Ping without a nonce value.
-     * Only use this if the remote node has a protocol version <= 60000
+     * Only use this if the remote node has a protocol version &lt;= 60000
      */
     public Ping() {
         this.hasNonce = false;

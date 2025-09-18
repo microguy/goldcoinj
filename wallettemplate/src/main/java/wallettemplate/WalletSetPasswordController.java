@@ -26,7 +26,8 @@ import org.slf4j.*;
 import org.spongycastle.crypto.params.*;
 import wallettemplate.utils.*;
 
-import java.time.*;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.concurrent.*;
 
 import static wallettemplate.utils.GuiUtils.*;

@@ -594,7 +594,7 @@ public class KeyChainGroup implements KeyBag {
         return filter;
     }
 
-    /** {@inheritDoc} */
+    /** Returns whether a bloom filter update is required. */
     public boolean isRequiringUpdateAllBloomFilter() {
         throw new UnsupportedOperationException();   // Unused.
     }

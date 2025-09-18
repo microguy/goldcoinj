@@ -37,7 +37,7 @@ import com.google.common.base.Objects;
  * depth-first traversal is performed, consuming bits and hashes as they were written during encoding.</p>
  *
  * <p>The serialization is fixed and provides a hard guarantee about the encoded size,
- * <tt>SIZE &lt;= 10 + ceil(32.25*N)</tt> where N represents the number of leaf nodes of the partial tree. N itself
+ * <code>SIZE &lt;= 10 + ceil(32.25*N)</code> where N represents the number of leaf nodes of the partial tree. N itself
  * is bounded by:</p>
  *
  * <p>

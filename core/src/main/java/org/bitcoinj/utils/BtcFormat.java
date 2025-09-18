@@ -27,6 +27,7 @@ import static com.google.common.base.Preconditions.checkState;
 import com.google.common.base.Strings;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.math.BigInteger;
 
 import static java.math.RoundingMode.HALF_UP;
@@ -361,12 +362,12 @@ import java.util.regex.Pattern;
  * String[] output = new String[rows.length];
  * int[] indexes = new int[rows.length];
  * int maxIndex = 0;
- * for (int i = 0; i < rows.length; i++) {
+ * for (int i = 0; i &lt; rows.length; i++) {
  *     output[i] = f.format(rows[i], new StringBuffer(), fp).toString();
  *     indexes[i] = fp.getBeginIndex();
  *     if (indexes[i] > maxIndex) maxIndex = indexes[i];
  * }
- * for (int i = 0; i < output.length; i++) {
+ * for (int i = 0; i &lt; output.length; i++) {
  *     System.out.println(repeat(" ", (maxIndex - indexes[i])) + output[i]);
  * }
  * </pre></blockquote>
@@ -1284,7 +1285,7 @@ public abstract class BtcFormat extends Format {
 	    satoshis = (BigInteger)qty;
 	else if (qty instanceof BigDecimal)
 	    satoshis = ((BigDecimal)qty).movePointRight(Coin.SMALLEST_UNIT_EXPONENT).
-                       setScale(0,BigDecimal.ROUND_HALF_UP).unscaledValue();
+                       setScale(0, RoundingMode.HALF_UP).unscaledValue();
 	else if (qty instanceof Coin)
 	    satoshis = BigInteger.valueOf(((Coin)qty).value);
 	else
@@ -1374,7 +1375,6 @@ public abstract class BtcFormat extends Format {
      *
      * @param scale Number of places the decimal point will be shifted when formatting
      *              a quantity of satoshis.
-     * @return The DecimalFormatSymbols before changing
      */
     protected static void prefixUnitsIndicator(DecimalFormat numberFormat, int scale) {
         checkState(Thread.holdsLock(numberFormat)); // make sure caller intends to reset before changing

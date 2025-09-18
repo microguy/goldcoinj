@@ -22,6 +22,7 @@ import com.google.common.collect.Multimap;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import com.google.common.util.concurrent.MoreExecutors;
 import org.bitcoinj.core.*;
 import org.bitcoinj.crypto.TransactionSignature;
 import org.bitcoinj.script.Script;
@@ -186,9 +187,9 @@ public abstract class PaymentChannelClientState {
 
             @Override
             public void onFailure(Throwable t) {
-                Throwables.propagate(t);
+                throw new RuntimeException(t);
             }
-        });
+        }, MoreExecutors.directExecutor());
     }
 
     private synchronized void deleteChannelFromWallet() {

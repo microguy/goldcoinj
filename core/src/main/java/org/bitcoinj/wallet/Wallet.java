@@ -3421,7 +3421,7 @@ public class Wallet extends BaseTaggableObject
     }
 
     /**
-     * Get the description of the wallet. See {@link Wallet#setDescription(String))}
+     * Get the description of the wallet. See {@link Wallet#setDescription(String)}
      */
     public String getDescription() {
         return description;
@@ -4256,7 +4256,7 @@ public class Wallet extends BaseTaggableObject
     }
 
     /**
-     * Convenience wrapper for <tt>setCoinSelector(Wallet.AllowUnconfirmedCoinSelector.get())</tt>. If this method
+     * Convenience wrapper for <code>setCoinSelector(Wallet.AllowUnconfirmedCoinSelector.get())</code>. If this method
      * is called on the wallet then transactions will be used for spending regardless of their confidence. This can
      * be dangerous - only use this if you absolutely know what you're doing!
      */
@@ -4641,7 +4641,7 @@ public class Wallet extends BaseTaggableObject
      * <p>This is used to generate a BloomFilter which can be {@link BloomFilter#merge(BloomFilter)}d with another.
      * It could also be used if you have a specific target for the filter's size.</p>
      * 
-     * <p>See the docs for {@link BloomFilter(int, double)} for a brief explanation of anonymity when using bloom
+     * <p>See the docs for {@link BloomFilter#BloomFilter(int, double)} for a brief explanation of anonymity when using bloom
      * filters.</p>
      */
     @Override @GuardedBy("keyChainGroupLock")
@@ -4780,7 +4780,7 @@ public class Wallet extends BaseTaggableObject
         } catch (Throwable throwable) {
             log.error("Error during extension deserialization", throwable);
             extensions.remove(extension.getWalletExtensionID());
-            Throwables.propagate(throwable);
+            throw new RuntimeException(throwable);
         } finally {
             keyChainGroupLock.unlock();
             lock.unlock();
@@ -5161,7 +5161,7 @@ public class Wallet extends BaseTaggableObject
                     public void onFailure(Throwable throwable) {
                         log.error("Failed to broadcast key rotation tx", throwable);
                     }
-                });
+                }, MoreExecutors.directExecutor());
             } catch (Exception e) {
                 log.error("Failed to broadcast rekey tx", e);
             }

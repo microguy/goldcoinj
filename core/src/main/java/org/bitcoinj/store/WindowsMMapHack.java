@@ -31,7 +31,13 @@ import java.nio.*;
  */
 public class WindowsMMapHack {
     public static void forceRelease(MappedByteBuffer buffer) {
-        sun.misc.Cleaner cleaner = ((DirectBuffer) buffer).cleaner();
-        if (cleaner != null) cleaner.clean();
+        try {
+            Object cleaner = ((DirectBuffer) buffer).cleaner();
+            if (cleaner != null) {
+                cleaner.getClass().getMethod("clean").invoke(cleaner);
+            }
+        } catch (Exception e) {
+            // Ignore errors - this is best effort cleanup
+        }
     }
 }

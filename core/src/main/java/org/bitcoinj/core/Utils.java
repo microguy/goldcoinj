@@ -17,7 +17,7 @@
 
 package org.bitcoinj.core;
 
-import com.google.common.base.Charsets;
+import java.nio.charset.StandardCharsets;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Ordering;
@@ -52,7 +52,7 @@ public class Utils {
 
     /** The string that prefixes all text messages signed using Bitcoin keys. */
     public static final String BITCOIN_SIGNED_MESSAGE_HEADER = "Bitcoin Signed Message:\n";
-    public static final byte[] BITCOIN_SIGNED_MESSAGE_HEADER_BYTES = BITCOIN_SIGNED_MESSAGE_HEADER.getBytes(Charsets.UTF_8);
+    public static final byte[] BITCOIN_SIGNED_MESSAGE_HEADER_BYTES = BITCOIN_SIGNED_MESSAGE_HEADER.getBytes(StandardCharsets.UTF_8);
 
     private static final Joiner SPACE_JOINER = Joiner.on(" ");
 
@@ -503,14 +503,14 @@ public class Utils {
     /**
      * <p>Given a textual message, returns a byte buffer formatted as follows:</p>
      *
-     * <tt><p>[24] "Bitcoin Signed Message:\n" [message.length as a varint] message</p></tt>
+     * <code>[24] "Bitcoin Signed Message:\n" [message.length as a varint] message</code>
      */
     public static byte[] formatMessageForSigning(String message) {
         try {
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             bos.write(BITCOIN_SIGNED_MESSAGE_HEADER_BYTES.length);
             bos.write(BITCOIN_SIGNED_MESSAGE_HEADER_BYTES);
-            byte[] messageBytes = message.getBytes(Charsets.UTF_8);
+            byte[] messageBytes = message.getBytes(StandardCharsets.UTF_8);
             VarInt size = new VarInt(messageBytes.length);
             bos.write(size.encode());
             bos.write(messageBytes);
@@ -624,7 +624,7 @@ public class Utils {
      * Reads and joins together with LF char (\n) all the lines from given file. It's assumed that file is in UTF-8.
      */
     public static String getResourceAsString(URL url) throws IOException {
-        List<String> lines = Resources.readLines(url, Charsets.UTF_8);
+        List<String> lines = Resources.readLines(url, StandardCharsets.UTF_8);
         return Joiner.on('\n').join(lines);
     }
 

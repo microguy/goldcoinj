@@ -123,7 +123,7 @@ public class TransactionOutput extends ChildMessage {
      * P2PKH</a>, return the address of the receiver, i.e., a base58 encoded hash of the public key in the script. </p>
      *
      * @param networkParameters needed to specify an address
-     * @return null, if the output script is not the form <i>OP_DUP OP_HASH160 <PubkeyHash> OP_EQUALVERIFY OP_CHECKSIG</i>,
+     * @return null, if the output script is not the form <i>OP_DUP OP_HASH160 &lt;PubkeyHash&gt; OP_EQUALVERIFY OP_CHECKSIG</i>,
      * i.e., not P2PKH
      * @return an address made out of the public key hash
      */

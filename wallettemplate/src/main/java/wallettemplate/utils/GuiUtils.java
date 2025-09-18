@@ -28,6 +28,7 @@ import javafx.util.Duration;
 import wallettemplate.MainController;
 
 import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
 import java.util.function.BiConsumer;
 
@@ -174,7 +175,7 @@ public class GuiUtils {
      */
     public static URL getResource(String name) {
         if (false)
-            return unchecked(() -> new URL("file:///your/path/here/src/main/wallettemplate/" + name));
+            return unchecked(() -> URI.create("file:///your/path/here/src/main/wallettemplate/" + name).toURL());
         else
             return MainController.class.getResource(name);
     }

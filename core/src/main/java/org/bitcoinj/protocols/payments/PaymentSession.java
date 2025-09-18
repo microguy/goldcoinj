@@ -323,8 +323,8 @@ public class PaymentSession {
             throw new PaymentProtocolException.Expired("PaymentRequest is expired");
         URL url;
         try {
-            url = new URL(paymentDetails.getPaymentUrl());
-        } catch (MalformedURLException e) {
+            url = URI.create(paymentDetails.getPaymentUrl()).toURL();
+        } catch (MalformedURLException | IllegalArgumentException e) {
             throw new PaymentProtocolException.InvalidPaymentURL(e);
         }
         return sendPayment(url, payment);

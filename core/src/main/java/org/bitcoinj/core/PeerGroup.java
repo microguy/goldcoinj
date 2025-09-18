@@ -23,7 +23,7 @@ import com.google.common.collect.*;
 import com.google.common.net.*;
 import com.google.common.primitives.*;
 import com.google.common.util.concurrent.*;
-import com.squareup.okhttp.*;
+import okhttp3.*;
 import com.subgraph.orchid.*;
 import net.jcip.annotations.*;
 import org.bitcoinj.core.listeners.*;
@@ -365,8 +365,9 @@ public class PeerGroup implements TransactionBroadcaster {
             HttpDiscovery.Details[] httpSeeds = params.getHttpSeeds();
             if (httpSeeds.length > 0) {
                 // Use HTTP discovery when Tor is active and there is a Cartographer seed, for a much needed speed boost.
-                OkHttpClient httpClient = new OkHttpClient();
-                httpClient.setSocketFactory(torClient.getSocketFactory());
+                OkHttpClient httpClient = new OkHttpClient.Builder()
+                        .socketFactory(torClient.getSocketFactory())
+                        .build();
                 List<PeerDiscovery> discoveries = Lists.newArrayList();
                 for (HttpDiscovery.Details httpSeed : httpSeeds)
                     discoveries.add(new HttpDiscovery(params, httpSeed, httpClient));
@@ -803,7 +804,7 @@ public class PeerGroup implements TransactionBroadcaster {
             peer.addDisconnectedEventListener(executor, listener);
     }
 
-    /** See {@link Peer#addDiscoveredEventListener(PeerDiscoveredEventListener)} */
+    /** Adds a listener to be notified when peers are discovered. */
     public void addDiscoveredEventListener(PeerDiscoveredEventListener listener) {
         addDiscoveredEventListener(Threading.USER_THREAD, listener);
     }
@@ -2193,7 +2194,7 @@ public class PeerGroup implements TransactionBroadcaster {
                 // This can happen if we get a reject message from a peer.
                 runningBroadcasts.remove(broadcast);
             }
-        });
+        }, MoreExecutors.directExecutor());
         // Keep a reference to the TransactionBroadcast object. This is important because otherwise, the entire tree
         // of objects we just created would become garbage if the user doesn't hold on to the returned future, and
         // eventually be collected. This in turn could result in the transaction not being committed to the wallet
@@ -2221,7 +2222,7 @@ public class PeerGroup implements TransactionBroadcaster {
      * Sets the period between pings for an individual peer. Setting this lower means more accurate and timely ping
      * times are available via {@link org.bitcoinj.core.Peer#getLastPingTime()} but it increases load on the
      * remote node. It defaults to {@link PeerGroup#DEFAULT_PING_INTERVAL_MSEC}.
-     * Setting the value to be <= 0 disables pinging entirely, although you can still request one yourself
+     * Setting the value to be &lt;= 0 disables pinging entirely, although you can still request one yourself
      * using {@link org.bitcoinj.core.Peer#ping()}.
      */
     public void setPingIntervalMsec(long pingIntervalMsec) {

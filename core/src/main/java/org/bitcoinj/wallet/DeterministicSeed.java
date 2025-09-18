@@ -20,7 +20,7 @@ package org.bitcoinj.wallet;
 import org.bitcoinj.core.Utils;
 import org.bitcoinj.crypto.*;
 
-import com.google.common.base.Charsets;
+import java.nio.charset.StandardCharsets;
 import com.google.common.base.Objects;
 import com.google.common.base.Splitter;
 import org.spongycastle.crypto.params.KeyParameter;
@@ -188,7 +188,7 @@ public class DeterministicSeed implements EncryptableItem {
     }
 
     private byte[] getMnemonicAsBytes() {
-        return Utils.join(mnemonicCode).getBytes(Charsets.UTF_8);
+        return Utils.join(mnemonicCode).getBytes(StandardCharsets.UTF_8);
     }
 
     public DeterministicSeed decrypt(KeyCrypter crypter, String passphrase, KeyParameter aesKey) {

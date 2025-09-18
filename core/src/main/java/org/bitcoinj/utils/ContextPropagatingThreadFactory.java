@@ -49,7 +49,7 @@ public class ContextPropagatingThreadFactory implements ThreadFactory {
                     r.run();
                 } catch (Exception e) {
                     log.error("Exception in thread", e);
-                    Throwables.propagate(e);
+                    throw new RuntimeException(e);
                 }
             }
         }, name);

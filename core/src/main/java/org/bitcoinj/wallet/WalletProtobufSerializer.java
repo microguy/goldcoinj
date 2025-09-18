@@ -54,7 +54,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * a data interchange format developed by Google with an efficient binary representation, a type safe specification
  * language and compilers that generate code to work with those data structures for many languages. Protocol buffers
  * can have their format evolved over time: conceptually they represent data using (tag, length, value) tuples. The
- * format is defined by the <tt>wallet.proto</tt> file in the bitcoinj source distribution.<p>
+ * format is defined by the <code>wallet.proto</code> file in the bitcoinj source distribution.<p>
  *
  * This class is used through its static methods. The most common operations are writeWallet and readWallet, which do
  * the obvious operations on Output/InputStreams. You can use a {@link java.io.ByteArrayInputStream} and equivalent
@@ -117,7 +117,7 @@ public class WalletProtobufSerializer {
     /**
      * Formats the given wallet (transactions and keys) to the given output stream in protocol buffer format.<p>
      *
-     * Equivalent to <tt>walletToProto(wallet).writeTo(output);</tt>
+     * Equivalent to <code>walletToProto(wallet).writeTo(output);</code>
      */
     public void writeWallet(Wallet wallet, OutputStream output) throws IOException {
         Protos.Wallet walletProto = walletToProto(wallet);
@@ -398,7 +398,7 @@ public class WalletProtobufSerializer {
      * Wallet object with {@code forceReset} set {@code true}. It won't work.</p>
      *
      * <p>If {@code forceReset} is {@code true}, then no transactions are loaded from the wallet, and it is configured
-     * to replay transactions from the blockchain (as if the wallet had been loaded and {@link Wallet.reset}
+     * to replay transactions from the blockchain (as if the wallet had been loaded and {@link Wallet#reset()}
      * had been called immediately thereafter).
      *
      * <p>A wallet can be unreadable for various reasons, such as inability to open the file, corrupt data, internally
@@ -447,7 +447,7 @@ public class WalletProtobufSerializer {
      * Wallet object with {@code forceReset} set {@code true}. It won't work.</p>
      *
      * <p>If {@code forceReset} is {@code true}, then no transactions are loaded from the wallet, and it is configured
-     * to replay transactions from the blockchain (as if the wallet had been loaded and {@link Wallet.reset}
+     * to replay transactions from the blockchain (as if the wallet had been loaded and {@link Wallet#reset()}
      * had been called immediately thereafter).
      *
      * <p>A wallet can be unreadable for various reasons, such as inability to open the file, corrupt data, internally
@@ -537,7 +537,7 @@ public class WalletProtobufSerializer {
         for (Protos.TransactionSigner signerProto : walletProto.getTransactionSignersList()) {
             try {
                 Class signerClass = Class.forName(signerProto.getClassName());
-                TransactionSigner signer = (TransactionSigner)signerClass.newInstance();
+                TransactionSigner signer = (TransactionSigner)signerClass.getDeclaredConstructor().newInstance();
                 signer.deserialize(signerProto.getData().toByteArray());
                 wallet.addTransactionSigner(signer);
             } catch (Exception e) {
