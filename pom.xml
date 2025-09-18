@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.goldcoinj</groupId>
+  <groupId>io.github.microguy</groupId>
   <artifactId>goldcoinj-parent</artifactId>
   <version>0.15.0</version>
   <packaging>pom</packaging>
@@ -93,13 +93,12 @@
       </plugin>
 
       <plugin>
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>nexus-staging-maven-plugin</artifactId>
-        <version>1.6.5</version>
+        <groupId>org.sonatype.central</groupId>
+        <artifactId>central-publishing-maven-plugin</artifactId>
+        <version>0.6.0</version>
         <extensions>true</extensions>
         <configuration>
-            <serverId>ossrh</serverId>
-            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+            <publishingServerId>ossrh</publishingServerId>
             <autoReleaseAfterClose>false</autoReleaseAfterClose>
         </configuration>
       </plugin>
@@ -192,6 +191,8 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <generated.sourceDirectory>gen</generated.sourceDirectory>
+    <maven.compiler.source>8</maven.compiler.source>
+    <maven.compiler.target>8</maven.compiler.target>
   </properties>
 
   <profiles>

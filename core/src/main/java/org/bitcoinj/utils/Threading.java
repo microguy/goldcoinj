@@ -51,7 +51,7 @@ public class Threading {
 
     /**
      * A dummy executor that just invokes the runnable immediately. Use this over
-     * {@link com.google.common.util.concurrent.MoreExecutors#sameThreadExecutor()} because the latter creates a new
+     * {@link com.google.common.util.concurrent.MoreExecutors#directExecutor()} because the latter creates a new
      * object each time in order to implement the more complex {@link ExecutorService} interface, which is overkill
      * for our needs.
      */
