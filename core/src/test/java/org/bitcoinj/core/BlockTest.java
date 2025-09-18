@@ -105,7 +105,16 @@ public class BlockTest {
         // Should find an acceptable nonce.
         block.solve();
         block.verify(Block.BLOCK_HEIGHT_GENESIS, EnumSet.noneOf(Block.VerifyFlag.class));
-        assertEquals(block.getNonce(), 2);
+        assertEquals(5L, block.getNonce());
+
+        // Assert the actual PoW hash for this deterministic test vector
+        assertEquals("1f7672f57acd7168f4ee3dfd6f2bf41086454a91fe53cbdaac1454e4abecadd6", block.getPowHash().toString());
+
+        // Neighbor safeguard: ensure nonce 4 fails and 5 succeeds
+        block.setNonce(4);
+        assertFalse(block.checkProofOfWork(false));
+        block.setNonce(5);
+        assertTrue(block.checkProofOfWork(false));
     }
 
     @Test

@@ -21,14 +21,14 @@
   </parent>
 
   <scm>
-    <connection>scm:git:https://github.com/bitcoinj/bitcoinj</connection>
-    <developerConnection>scm:git:https://github.com/bitcoinj/bitcoinj</developerConnection>
-    <url>scm:git:https://github.com/bitcoinj/bitcoinj</url>
+    <connection>scm:git:git://github.com/microguy/goldcoinj.git</connection>
+    <developerConnection>scm:git:ssh://github.com/microguy/goldcoinj.git</developerConnection>
+    <url>https://github.com/microguy/goldcoinj</url>
   </scm>
 
   <name>goldcoinj Parent</name>
-  <description>Provides the common configuration for the BitCoinJ modules</description>
-  <url>http://www.bitcoinj.org/</url>
+  <description>A Java Goldcoin library</description>
+  <url>https://github.com/microguy/goldcoinj</url>
 
   <licenses>
     <license>
@@ -41,15 +41,15 @@
 
   <issueManagement>
     <system>GitHub</system>
-    <url>https://github.com/bitcoinj/bitcoinj/issues</url>
+    <url>https://github.com/microguy/goldcoinj/issues</url>
   </issueManagement>
 
-  <mailingLists>
-    <mailingList>
-      <name>bitcoinj Google Group</name>
-      <post>https://groups.google.com/forum/#!forum/bitcoinj</post>
-    </mailingList>
-  </mailingLists>
+  <developers>
+    <developer>
+      <name>MicroGuy</name>
+      <email>webmaster@microguy.net</email>
+    </developer>
+  </developers>
 
   <distributionManagement>
     <snapshotRepository>
@@ -89,6 +89,8 @@
         <artifactId>maven-javadoc-plugin</artifactId>
         <configuration>
           <notimestamp>true</notimestamp>
+          <doclint>none</doclint>
+          <source>8</source>
         </configuration>
       </plugin>
 
@@ -102,6 +104,27 @@
             <autoReleaseAfterClose>false</autoReleaseAfterClose>
         </configuration>
       </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>3.5.0</version>
+        <executions>
+          <execution>
+            <id>enforce-maven</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireMavenVersion>
+                  <version>3.0.4</version>
+                </requireMavenVersion>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
     <pluginManagement>
       <plugins>
@@ -111,7 +134,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.2</version>
+          <version>3.13.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-dependency-plugin</artifactId>
@@ -123,7 +146,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-enforcer-plugin</artifactId>
-          <version>1.4</version>
+          <version>3.5.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
@@ -131,11 +154,11 @@
         </plugin>
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
-          <version>2.6</version>
+          <version>3.4.2</version>
         </plugin>
         <plugin>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>2.10.2</version>
+          <version>3.10.1</version>
         </plugin>
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
@@ -143,7 +166,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-shade-plugin</artifactId>
-          <version>2.3</version>
+          <version>3.5.1</version>
         </plugin>
         <plugin>
           <artifactId>maven-site-plugin</artifactId>
@@ -151,7 +174,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-source-plugin</artifactId>
-          <version>2.4</version>
+          <version>3.3.1</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -160,7 +183,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.19.1</version>
+          <version>3.5.2</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -170,7 +193,7 @@
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
-        <version>1.7.20</version>
+        <version>2.0.16</version>
       </dependency>
       <!-- goldcoinj consumers are expected to provide their own SLF4J adapters
     such as logback, slf4j-log4j12, slf4j-jcl and so on
@@ -178,15 +201,12 @@
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-jdk14</artifactId>
-        <version>1.7.20</version>
+        <version>2.0.16</version>
         <scope>runtime</scope>
         <optional>true</optional>
       </dependency>
   </dependencies>
 
-  <prerequisites>
-      <maven>3.0.4</maven>
-  </prerequisites>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
